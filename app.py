@@ -13,7 +13,6 @@ st.title("🧠 Alzheimer's Disease Classification System")
 
 st.write("Enter the patient's details below to predict whether the patient is likely to have Alzheimer's Disease.")
 
-
 # Patient Details
 
 # Create a dictionary to store feature inputs dynamically
