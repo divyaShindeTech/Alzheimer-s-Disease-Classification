@@ -1,8 +1,11 @@
+
 import streamlit as st
 import pandas as pd
 import joblib
 
+# -----------------------------
 # Load Model and Scaler
+# -----------------------------
 
 model = joblib.load("alzheimers_model.pkl")
 scaler = joblib.load("scaler.pkl")
@@ -16,8 +19,9 @@ st.set_page_config(
 st.title("🧠 Alzheimer's Disease Classification")
 st.write("Enter patient details to predict Alzheimer's disease.")
 
-
+# -----------------------------
 # User Inputs
+# -----------------------------
 
 Age = st.number_input("Age", 60, 90, 70)
 Gender = st.selectbox("Gender", [0, 1])
@@ -80,78 +84,36 @@ DifficultyCompletingTasks = st.selectbox("Difficulty Completing Tasks", [0, 1])
 
 Forgetfulness = st.selectbox("Forgetfulness", [0, 1])
 
+# -----------------------------
 # Prediction
+# -----------------------------
 
 if st.button("Predict"):
 
-    input_data = pd.DataFrame([[
-        Age,
-        Gender,
-        Ethnicity,
-        EducationLevel,
-        BMI,
-        Smoking,
-        AlcoholConsumption,
-        PhysicalActivity,
-        DietQuality,
-        SleepQuality,
-        FamilyHistoryAlzheimers,
-        CardiovascularDisease,
-        Diabetes,
-        Depression,
-        HeadInjury,
-        Hypertension,
-        SystolicBP,
-        DiastolicBP,
-        CholesterolTotal,
-        CholesterolLDL,
-        CholesterolHDL,
-        CholesterolTriglycerides,
-        MMSE,
-        FunctionalAssessment,
-        MemoryComplaints,
-        BehavioralProblems,
-        ADL,
-        Confusion,
-        Disorientation,
-        PersonalityChanges,
-        DifficultyCompletingTasks,
-        Forgetfulness
-    ]],
-    columns=[
-        'Age',
-        'Gender',
-        'Ethnicity',
-        'EducationLevel',
-        'BMI',
-        'Smoking',
-        'AlcoholConsumption',
-        'PhysicalActivity',
-        'DietQuality',
-        'SleepQuality',
-        'FamilyHistoryAlzheimers',
-        'CardiovascularDisease',
-        'Diabetes',
-        'Depression',
-        'HeadInjury',
-        'Hypertension',
-        'SystolicBP',
-        'DiastolicBP',
-        'CholesterolTotal',
-        'CholesterolLDL',
-        'CholesterolHDL',
-        'CholesterolTriglycerides',
-        'MMSE',
-        'FunctionalAssessment',
-        'MemoryComplaints',
-        'BehavioralProblems',
-        'ADL',
-        'Confusion',
-        'Disorientation',
-        'PersonalityChanges',
-        'DifficultyCompletingTasks',
-        'Forgetfulness'
-    ])
+    input_data = pd.DataFrame([{
+        "FunctionalAssessment": FunctionalAssessment,
+        "ADL": ADL,
+        "MemoryComplaints": MemoryComplaints,
+        "MMSE": MMSE,
+        "BehavioralProblems": BehavioralProblems,
+        "SleepQuality": SleepQuality,
+        "EducationLevel": EducationLevel,
+        "CholesterolHDL": CholesterolHDL,
+        "Hypertension": Hypertension,
+        "FamilyHistoryAlzheimers": FamilyHistoryAlzheimers,
+        "CholesterolLDL": CholesterolLDL,
+        "Diabetes": Diabetes,
+        "CardiovascularDisease": CardiovascularDisease,
+        "BMI": BMI,
+        "Disorientation": Disorientation,
+        "CholesterolTriglycerides": CholesterolTriglycerides,
+        "HeadInjury": HeadInjury,
+        "Gender": Gender,
+        "PersonalityChanges": PersonalityChanges,
+        "Confusion": Confusion,
+        "SystolicBP": SystolicBP,
+        "Ethnicity": Ethnicity
+    }])
 
     input_scaled = scaler.transform(input_data)
 
@@ -168,6 +130,6 @@ if st.button("Predict"):
 
     st.subheader("Prediction Probability")
 
-    st.write(f"Probability of No Alzheimer's Disease : {probability[0]*100:.2f}%")
+    st.write(f"No Alzheimer's Disease : {probability[0]*100:.2f}%")
 
-    st.write(f"Probability of Alzheimer's Disease : {probability[1]*100:.2f}%")
+    st.write(f"Alzheimer's Disease : {probability[1]*100:.2f}%")
