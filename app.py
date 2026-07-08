@@ -89,7 +89,6 @@ Forgetfulness = st.selectbox("Forgetfulness", [0, 1])
 # -----------------------------
 
 if st.button("Predict"):
-
     input_data = pd.DataFrame([{
         "FunctionalAssessment": FunctionalAssessment,
         "ADL": ADL,
