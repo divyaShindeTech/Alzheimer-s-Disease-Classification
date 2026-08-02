@@ -89,36 +89,6 @@ Alzheimers-Disease-Classification/
 └── .gitignore
 ```
 
-
-## 🚀 How to Run the Project
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/Alzheimers-Disease-Classification.git
-```
-
-### 2. Navigate to the Project Directory
-```bash
-cd Alzheimers-Disease-Classification
-```
-
-### 3. Install Required Libraries
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Run the Project
-If using Jupyter Notebook:
-
-```bash
-jupyter notebook
-```
-
-If the project includes a Streamlit application:
-```bash
-streamlit run app.py
-```
-
 ## 📈 Results
 The machine learning models were trained and evaluated using standard classification metrics. The model performance can be compared based on accuracy, precision, recall, and F1-score.
 
